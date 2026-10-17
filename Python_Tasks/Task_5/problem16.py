@@ -1,30 +1,20 @@
-# Problem: Python Lists
-# HackerRank: https://www.hackerrank.com/challenges/python-lists/problem
+# Problem: Collections.Counter()
+# HackerRank: https://www.hackerrank.com/challenges/collections-counter/problem
+
+from collections import Counter
 
 if __name__ == '__main__':
+    X = int(input())
+    shoe_sizes = Counter(map(int, input().split()))
+
     N = int(input())
-    my_list = []
+    total_earnings = 0
 
     for _ in range(N):
-        command = input().split()
+        size, price = map(int, input().split())
 
-        if command[0] == 'insert':
-            my_list.insert(int(command[1]), int(command[2]))
+        if shoe_sizes[size] > 0:
+            total_earnings += price
+            shoe_sizes[size] -= 1
 
-        elif command[0] == 'print':
-            print(my_list)
-
-        elif command[0] == 'remove':
-            my_list.remove(int(command[1]))
-
-        elif command[0] == 'append':
-            my_list.append(int(command[1]))
-
-        elif command[0] == 'sort':
-            my_list.sort()
-
-        elif command[0] == 'pop':
-            my_list.pop()
-
-        elif command[0] == 'reverse':
-            my_list.reverse()
+    print(total_earnings)
